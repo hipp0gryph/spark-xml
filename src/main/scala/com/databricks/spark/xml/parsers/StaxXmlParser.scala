@@ -320,8 +320,8 @@ private[xml] object StaxXmlParser extends Serializable {
 
               case ArrayType(dt: DataType, _) =>
                 val values = Option(row(index))
-                  .map(_.asInstanceOf[ArrayBuffer[Any]])
-                  .getOrElse(ArrayBuffer.empty[Any])
+                  .map(_.asInstanceOf[Array[Any]])
+                  .getOrElse(Array.empty[Any])
                 val newValue = dt match {
                   case st: StructType =>
                     convertObjectWithAttributes(parser, st, options, attributes)
@@ -345,8 +345,8 @@ private[xml] object StaxXmlParser extends Serializable {
                     row(anyIndex) = newValue
                   case ArrayType(StringType, _) =>
                     val values = Option(row(anyIndex))
-                      .map(_.asInstanceOf[ArrayBuffer[String]])
-                      .getOrElse(ArrayBuffer.empty[String])
+                      .map(_.asInstanceOf[Array[String]])
+                      .getOrElse(Array.empty[String])
                     row(anyIndex) = values :+ newValue
                 }
               } else {
