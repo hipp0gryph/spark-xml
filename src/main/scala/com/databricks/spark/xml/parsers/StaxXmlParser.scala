@@ -328,7 +328,7 @@ private[xml] object StaxXmlParser extends Serializable {
                   case dt: DataType =>
                     convertField(parser, dt, options)
                 }
-                row(index) = values :+ newValue
+                row(index) = (values :+ newValue).toArray
 
               case dt: DataType =>
                 row(index) = convertField(parser, dt, options, attributes)
@@ -347,7 +347,7 @@ private[xml] object StaxXmlParser extends Serializable {
                     val values = Option(row(anyIndex))
                       .map(_.asInstanceOf[ArrayBuffer[String]])
                       .getOrElse(ArrayBuffer.empty[String])
-                    row(anyIndex) = values :+ newValue
+                    row(anyIndex) = (values :+ newValue).toArray
                 }
               } else {
                 StaxXmlParserUtils.skipChildren(parser)
